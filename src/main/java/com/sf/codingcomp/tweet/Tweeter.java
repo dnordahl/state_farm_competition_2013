@@ -82,8 +82,6 @@ public class Tweeter {
 		}
 		return returnList;
 		
-		//List<Hashtag> hashtags = new ArrayList<Hashtag>();
-		return null;
 	}
 	private boolean hashtagInList(List<Hashtag> hashtags, Hashtag hashtag){
 		for (Hashtag h : hashtags){
