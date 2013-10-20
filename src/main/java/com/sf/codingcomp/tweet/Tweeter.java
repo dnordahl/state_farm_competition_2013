@@ -58,22 +58,57 @@ public class Tweeter {
 	 * @return
 	 */
 	public List<Hashtag> findMostPopularHashtags(User user, int howMany) {
-		HashMap<String,Integer> hashtags = new HashMap<String,Integer>();
-		
+		List<Hashtag> hashtags = new ArrayList<Hashtag>();
+		Hashtag temp;
 		for (Tweet t : user.getFeed().getTweets()) {
-			for (String hashtag : t.getHashtags())
+			for (Hashtag hashtag : t.getHashtags())
 			{
-				if (hashtags.containsKey(hashtag)) {
-					Integer count = hashtags.get(hashtag);
-					count++;
+				if (hashtagInList(hashtags, hashtag)) {
+					temp = hashtags.get(findHashtagIndex(hashtags,hashtag));
+					temp.setOccurrences(temp.getOccurrences()+1);
 				}
 				else
-					hashtags.put(hashtag, 0);
+					hashtags.add(hashtag);
 			}
 		}
+		List<Hashtag> returnList = new ArrayList<Hashtag>();
+		int index;
+		for(int i = 0; i < howMany; i++){
+			if (hashtags.size() == 0)
+				break;
+			index = getIndexWithMostOccurrences(hashtags);
+			returnList.add(hashtags.get(index));
+			hashtags.remove(index);
+		}
+		return returnList;
 		
 		//List<Hashtag> hashtags = new ArrayList<Hashtag>();
 		
+	}
+	private boolean hashtagInList(List<Hashtag> hashtags, Hashtag hashtag){
+		for (Hashtag h : hashtags){
+			if (h.getText().equalsIgnoreCase(hashtag.getText()))
+				return true;
+		}
+		return false;
+	}
+	private int findHashtagIndex(List<Hashtag> hashtags, Hashtag hashtag){
+		for (int i = 0; i < hashtags.size(); i++){
+			if (hashtags.get(i).getText().equalsIgnoreCase(hashtag.getText()))
+				return i;
+		}
+		return -1;
+	}
+	private int getIndexWithMostOccurrences(List<Hashtag> hashtags){
+		int maxIndex = -1;
+		int max = 0;
+		for (int i = 0; i < hashtags.size(); i++){
+			if(hashtags.get(i).getOccurrences() > max){
+				max = hashtags.get(i).getOccurrences();
+				maxIndex = i;
+			}
+		}
+		return maxIndex;
 	}
 
 	/**

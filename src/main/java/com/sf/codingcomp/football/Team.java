@@ -11,7 +11,6 @@ public class Team {
 		int count = 0;
 		for (int i = 0; i < players.size(); i++){
 			if (player.getClass() == (players.get(i)).getClass()){
-				System.out.println("test");
 				count++;
 				if (count >= options.getMaximumPlayersAtEachPosition()){
 					throw new TooManyPlayersException();
