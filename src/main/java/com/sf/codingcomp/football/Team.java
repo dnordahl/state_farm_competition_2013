@@ -8,17 +8,33 @@ public class Team {
 	private List<Player> players = new ArrayList<Player>();
 
 	public void addPlayer(Player player, LeagueOptions options) throws TooManyPlayersException {
-		// TODO implement method
+		int count = 0;
+		for (int i = 0; i < players.size(); i++){
+			if (player.getClass() == (players.get(i)).getClass()){
+				System.out.println("test");
+				count++;
+				if (count >= options.getMaximumPlayersAtEachPosition()){
+					throw new TooManyPlayersException();
+				}
+			}
+		}
+		players.add(player);
 	}
 
 	public boolean wins(Team opponent, LeagueOptions options) {
-		// TODO implement method
+		double score = this.total(options);
+		double oppScore = opponent.total(options);
+		if (score > oppScore)
+			return true;
 		return false;
 	}
 
 	public double total(LeagueOptions options) {
-		// TODO implement method
-		return -1;
+		double score = 0;
+		for (int i = 0; i < players.size(); i++){
+			score += players.get(i).calculateTotalScore(options.isPartialPointsAllowed());
+		}
+		return score;
 	}
 
 	public List<Player> getPlayers() {
