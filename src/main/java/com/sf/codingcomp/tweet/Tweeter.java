@@ -54,7 +54,7 @@ public class Tweeter {
 	 * @return
 	 */
 	public User findMostActiveFollower(User user) {
-		// TODO implement me
 		return null;
+
 	}
 }
