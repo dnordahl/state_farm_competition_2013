@@ -24,10 +24,10 @@ public class Regex {
 	 * @return
 	 */
 	public static boolean isAmericanAddress(String address) {
-		String street = "(\\w+( \\w+)*( \\d+){0,1})|(PO Box \\d+)";
+		String street = "((\\d+ \\w+( \\w+)*( \\d+){0,1})|(PO Box \\d+))";
 		String city = "(\\w+( \\w+)*)";
 		String state = "[A-Z]{2}";
-		String zip = "\\d{5}(-\\d{4}|\\d{4}){0,1}";
+		String zip = " \\d{5}(\\-\\d{4}|\\d{4}){0,1}";
 		
 		String delimiter = ",{0,1} +";
 		
