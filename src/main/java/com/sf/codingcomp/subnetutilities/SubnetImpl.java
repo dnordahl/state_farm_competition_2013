@@ -2,13 +2,10 @@ package com.sf.codingcomp.subnetutilities;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.List;
 
 public class SubnetImpl implements Subnet {
-	
-	public static void main(String[] args) throws UnknownHostException, InvalidMaskException {
-		new SubnetImpl(InetAddress.getByName("10.0.0.0"), 24);
-	}
 	
 	private byte[] subnet;
 	private int mask;
@@ -27,9 +24,43 @@ public class SubnetImpl implements Subnet {
 		// adjust for subnet
 		for (int i = 3; i >= 0 && maskdiff > 0; i--)
 		{
-			int thisiter = maskdiff % 9;
-			this.subnet[i] -= Math.pow(2,thisiter);
-			maskdiff -= 8;
+			// couldn't figure out the math in time, so ugly bitwise operations it is!
+			switch (maskdiff) {
+			case 0:
+				break;
+			case 1:
+				this.subnet[i] = (byte) (this.subnet[i] & 254);
+				maskdiff -= 1;
+				break;
+			case 2:
+				this.subnet[i] = (byte) (this.subnet[i] & 252);
+				maskdiff -= 2;
+				break;
+			case 3:
+				this.subnet[i] = (byte) (this.subnet[i] & 248);
+				maskdiff -= 3;
+				break;
+			case 4:
+				this.subnet[i] = (byte) (this.subnet[i] & 240);
+				maskdiff -= 4;
+				break;
+			case 5:
+				this.subnet[i] = (byte) (this.subnet[i] & 224);
+				maskdiff -= 5;
+				break;
+			case 6:
+				this.subnet[i] = (byte) (this.subnet[i] & 192);
+				maskdiff -= 6;
+				break;
+			case 7:
+				this.subnet[i] = (byte) (this.subnet[i] & 128);
+				maskdiff -= 7;
+				break;
+			default:
+				this.subnet[i] = 0;
+				maskdiff -= 8;
+				break;
+			}
 		}
 		
 		

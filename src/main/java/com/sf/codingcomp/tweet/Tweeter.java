@@ -73,7 +73,7 @@ public class Tweeter {
 		}
 		
 		//List<Hashtag> hashtags = new ArrayList<Hashtag>();
-		
+		return null;
 	}
 
 	/**
