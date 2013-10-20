@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -128,22 +129,22 @@ public class SubnetImplTest {
 		InetAddress ipAddress = InetAddress.getByName("10.0.0.0");
 		this.subnet = new SubnetImpl(ipAddress, 24);
 		InetAddress networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("10.0.0.0");
 		this.subnet = new SubnetImpl(ipAddress, 16);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.0");
 		this.subnet = new SubnetImpl(ipAddress, 24);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.64");
 		this.subnet = new SubnetImpl(ipAddress, 26);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)64}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)64}, networkAddress.getAddress()));
 	}
 
 	/**
@@ -156,22 +157,22 @@ public class SubnetImplTest {
 		InetAddress ipAddress = InetAddress.getByName("10.0.0.4");
 		this.subnet = new SubnetImpl(ipAddress, 24);
 		InetAddress networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("10.0.0.8");
 		this.subnet = new SubnetImpl(ipAddress, 16);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)10, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.0");
 		this.subnet = new SubnetImpl(ipAddress, 24);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.66");
 		this.subnet = new SubnetImpl(ipAddress, 26);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)64}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)64}, networkAddress.getAddress()));
 	}
 
 	/**
@@ -184,12 +185,12 @@ public class SubnetImplTest {
 		InetAddress ipAddress = InetAddress.getByName("192.168.1.1");
 		this.subnet = new SubnetImpl(ipAddress, 1);
 		InetAddress networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)128, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)128, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("194.0.0.0");
 		this.subnet = new SubnetImpl(ipAddress, 7);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)194, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)194, (byte)0, (byte)0, (byte)0}, networkAddress.getAddress()));
 	}
 
 	/**
@@ -202,12 +203,12 @@ public class SubnetImplTest {
 		InetAddress ipAddress = InetAddress.getByName("192.168.1.6");
 		this.subnet = new SubnetImpl(ipAddress, 30);
 		InetAddress networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)4}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)4}, networkAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.7");
 		this.subnet = new SubnetImpl(ipAddress, 32);
 		networkAddress = this.subnet.getNetworkAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)7}, networkAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)7}, networkAddress.getAddress()));
 	}
 
 	/**
@@ -221,12 +222,12 @@ public class SubnetImplTest {
 		InetAddress ipAddress = InetAddress.getByName("192.168.1.0");
 		this.subnet = new SubnetImpl(ipAddress, 24);
 		InetAddress broadcastAddress = this.subnet.getBroadcastAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)255}, broadcastAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)255}, broadcastAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.0");
 		this.subnet = new SubnetImpl(ipAddress, 26);
 		broadcastAddress = this.subnet.getBroadcastAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)63}, broadcastAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)63}, broadcastAddress.getAddress()));
 	}
 
 	/**
@@ -239,17 +240,17 @@ public class SubnetImplTest {
 		InetAddress ipAddress = InetAddress.getByName("192.168.1.2");
 		this.subnet = new SubnetImpl(ipAddress, 24);
 		InetAddress broadcastAddress = this.subnet.getBroadcastAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)255}, broadcastAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)255}, broadcastAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.8");
 		this.subnet = new SubnetImpl(ipAddress, 26);
 		broadcastAddress = this.subnet.getBroadcastAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)63}, broadcastAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)63}, broadcastAddress.getAddress()));
 
 		ipAddress = InetAddress.getByName("192.168.1.129");
 		this.subnet = new SubnetImpl(ipAddress, 26);
 		broadcastAddress = this.subnet.getBroadcastAddress();
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)191}, broadcastAddress.getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)191}, broadcastAddress.getAddress()));
 	}
 
 	/**
@@ -265,10 +266,10 @@ public class SubnetImplTest {
 		List<InetAddress> ipAddresses = this.subnet.getAllAddresses();
 
 		assertEquals(4, ipAddresses.size());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)0}, ipAddresses.get(0).getAddress());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)1}, ipAddresses.get(1).getAddress());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)2}, ipAddresses.get(2).getAddress());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)3}, ipAddresses.get(3).getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)0}, ipAddresses.get(0).getAddress()));
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)1}, ipAddresses.get(1).getAddress()));
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)2}, ipAddresses.get(2).getAddress()));
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)3}, ipAddresses.get(3).getAddress()));
 		
 		subnetAddress = InetAddress.getByName("192.168.1.4");
 		this.subnet = new SubnetImpl(subnetAddress, 30);
@@ -276,10 +277,10 @@ public class SubnetImplTest {
 		ipAddresses = this.subnet.getAllAddresses();
 		
 		assertEquals(4, ipAddresses.size());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)4}, ipAddresses.get(0).getAddress());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)5}, ipAddresses.get(1).getAddress());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)6}, ipAddresses.get(2).getAddress());
-		assertEquals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)7}, ipAddresses.get(3).getAddress());
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)4}, ipAddresses.get(0).getAddress()));
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)5}, ipAddresses.get(1).getAddress()));
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)6}, ipAddresses.get(2).getAddress()));
+		assertTrue(Arrays.equals(new byte[]{(byte)192, (byte)168, (byte)1, (byte)7}, ipAddresses.get(3).getAddress()));
 	}
 
 	/**
