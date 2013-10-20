@@ -10,26 +10,18 @@ public class Velociraptor {
 		if (prey.getTopSpeed() > TOP_SPEED)
 			return -1;
 		for (int i = startingSpeed; i<= TOP_SPEED; i++){
-			if (prey.getCurrentLead() <= 0){
-				System.out.println(count);
+			if (prey.getCurrentLead() <= 0)
 				return count;
-			}
 			subtraction = (((prey.getTopSpeed()*(88.0/60))-(i*(88.0/60))));
-			System.out.println(subtraction);
 			prey.setCurrentLead(prey.getCurrentLead() + subtraction);
 			count++;
-			System.out.println("count: " +count + " " + prey.getCurrentLead());
 		}
 		for(int i = TOP_SPEED-1; i>=0; i--){
-			if (prey.getCurrentLead() <= 0){
-				System.out.println(count);
+			if (prey.getCurrentLead() <= 0)
 				return count;
-			}
 			count++;
 			subtraction = (((prey.getTopSpeed()*(88.0/60))-(i*(88.0/60))));
-			System.out.println(subtraction);
 			prey.setCurrentLead(prey.getCurrentLead() + subtraction);
-			System.out.println("count: " +count + " " + prey.getCurrentLead());
 		}
 		return -1;
 	}

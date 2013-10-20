@@ -42,13 +42,13 @@ public class Tweet {
 		return mentions;
 	}
 	
-	public List<String> getHashtags() {
+	public List<Hashtag> getHashtags() {
 		Pattern regex = Pattern.compile("#\\w+");
 		Matcher match = regex.matcher(getText());
-		List<String> hashtags = new ArrayList<String>();
+		List<Hashtag> hashtags = new ArrayList<Hashtag>();
 		
 		while (match.find())
-			hashtags.add(match.group());
+			hashtags.add(new Hashtag(match.group(),1));
 		
 		return hashtags;
 	}
