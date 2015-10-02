@@ -1,32 +1,23 @@
 package com.sf.codingcomp.duck;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
 
 public class DuckFinder {
 
 	public static <T> boolean isADuck(T objectToCheck) {
 
-		Method[] methods = objectToCheck.getClass().getMethods();
-		
-		// find looksLikeADuck()
-		boolean looks = false;
-		for (Method m : methods) {
-			if ("looksLikeADuck".equals(m.getName())) {
-				looks = true;
-				break;
+		boolean quacks = false, looksIt = false;
+		Method[] methods = objectToCheck.getClass().getDeclaredMethods();
+		for (Method method : methods) {
+			if (Modifier.isPublic(method.getModifiers())) {
+				if (method.getName().equals("quacksLikeADuck")) quacks = true;
+				if (method.getName().equals("looksLikeADuck"))	looksIt = true;
 			}
 		}
-		
-		
-		boolean quacks = false;
-		for (Method m : methods) {
-			if ("quacksLikeADuck".equals(m.getName())) {
-				quacks = true;
-				break;
-			}
-		}
-		
-		return looks && quacks;
+
+		return quacks && looksIt;
 	}
 
 }
